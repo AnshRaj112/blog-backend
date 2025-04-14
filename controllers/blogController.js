@@ -15,14 +15,9 @@ const getBlogs = async (req, res) => {
 
     const query = { isPublic: true };
 
-    if (req.query.title)
-      query.title = { $regex: req.query.title, $options: "i" };
+    if (req.query.title) query.title = { $regex: req.query.title, $options: "i" };
 
-    if (req.query.tag) {
-      query.tags = Array.isArray(req.query.tag)
-        ? { $in: req.query.tag }
-        : req.query.tag;
-    }
+    if (req.query.tag) query.tags = Array.isArray(req.query.tag) ? { $in: req.query.tag } : req.query.tag;
 
     const sortField = req.query.sort || "createdAt";
     const sortOrder = req.query.order === "asc" ? 1 : -1;

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const slugify = require('slugify');
 
 // Schema for replies to comments
 const replySchema = new mongoose.Schema({
@@ -31,6 +32,14 @@ const blogSchema = new mongoose.Schema({
     love: { type: Number, default: 0 }
   },
   comments: [commentSchema],  // Array of comments on the blog
+});
+
+// Automatically generate a slug for the blog
+blogSchema.pre('save', function(next) {
+  if (!this.slug) {
+    this.slug = slugify(this.title, { lower: true });
+  }
+  next();
 });
 
 module.exports = mongoose.model('Blog', blogSchema);
