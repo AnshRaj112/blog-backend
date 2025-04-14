@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const {
   getBlogs, createBlog, updateBlog, deleteBlog, toggleVisibility,
-  toggleHeart, addComment, addReply, deleteComment, deleteReply
+  toggleHeart, addComment, addReply, deleteComment, deleteReply, getBlogById 
 } = require('../controllers/blogController.js');
 
 // Basic CRUD
@@ -25,4 +25,5 @@ router.post('/:id/comments/:index/replies', addReply);
 router.delete('/:id/comments/:index', deleteComment);
 router.delete('/:id/comments/:commentIndex/replies/:replyIndex', deleteReply);
 
+router.get('/:id', getBlogById);
 module.exports = router;
