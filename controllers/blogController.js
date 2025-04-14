@@ -1,4 +1,4 @@
-const Blog = require("../models/blog");
+const Blog = require("../models/Blog");
 const slugify = require("slugify");
 
 // 🛡️ Admin check (mock version or token decoded req.user)
